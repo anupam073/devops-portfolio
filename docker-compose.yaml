@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  crypto:
+    build:
+      context: ../../  # Path to the parent directory containing the Dockerfile
+      dockerfile: Dockerfile  # Specify the Dockerfile name
+    volumes:
+      - ../../src:/app/src  # Mount the source code for development
+    ports:
+      - "3000:3000"  # Map port 3000 on the host to port 3000 in the container
+    environment:  # Set environment variables
+      - NODE_ENV=production  # Ensure the environment is set to production
+    command: yarn start  # Command to run your application
+    restart: unless-stopped  # Restart policy for the container

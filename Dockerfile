@@ -1,0 +1,34 @@
+# Stage 1: Build
+FROM node:14.18.3 AS builder
+ENV NODE_ENV=production
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install --frozen-lockfile
+
+# Copy application files
+COPY . .
+
+# Build the application (if necessary)
+# RUN yarn build (uncomment if you have a build step)
+
+# Stage 2: Production
+FROM node:14.18.3 AS production
+ENV NODE_ENV=production
+
+# Set the working directory
+WORKDIR /app
+
+# Copy only the necessary files from the builder stage
+COPY --from=builder /app .
+
+# Expose port
+EXPOSE 3000
+
+# Start the app
+CMD ["yarn", "start"]
