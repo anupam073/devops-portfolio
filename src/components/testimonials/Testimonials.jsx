@@ -24,7 +24,7 @@ const Testimonials = () => {
 			image: Image3,
 			title: "Thapelo Kekana",
 			subtitle: "Frontend Developer @ FNB",
-			comment: "I enjoy working with the theme and learn so much. You guys make the process fun and interesting. Good luck! 👍",
+			comment: "",
 		},
 	];
 
