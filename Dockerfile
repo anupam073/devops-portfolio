@@ -6,8 +6,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # Copy package files
-COPY package.json yarn.lock ./
-
+COPY package.json package-lock.json ./ 
 # Cache dependencies by separating package installation
 RUN npm install 
 
@@ -15,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the application (if necessary)
-# RUN yarn build (uncomment if you have a build step)
+# RUN npm run build (uncomment if you have a build step)
 
 # Stage 2: Production
 FROM node:14.18.3 AS production
