@@ -8,10 +8,10 @@ WORKDIR /app
 # Copy package files
 COPY package.json yarn.lock ./
 
-# Install dependencies
-RUN yarn install --frozen-lockfile
+# Cache dependencies by separating package installation
+RUN npm install 
 
-# Copy application files
+# Copy the rest of the application files
 COPY . .
 
 # Build the application (if necessary)
@@ -31,4 +31,4 @@ COPY --from=builder /app .
 EXPOSE 3000
 
 # Start the app
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
